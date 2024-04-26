@@ -14,15 +14,31 @@ def root():
     # return {"response":response}
     # return {'message': 'Welcome to GeeksforGeeks!'}
 
-@app.get('/get_firstuser')
-def first_user():
-    api_url = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata"
+@app.get('/recipt={name}')
+def first_user(name:str):
+    api_url = "https://www.themealdb.com/api/json/v1/1/search.php?s="+name
     all_users = requests.get(api_url).json()
     print(all_users)
     # user1 = all_users[0]
     name = all_users["meals"]
     # email = user1["idMeal"]
     return {'Mealname': name}
+
+@app.get("/random")
+def random():
+    api_url = "https://www.themealdb.com/api/json/v1/1/random.php"
+    randomRecipt = requests.get(api_url).json()
+    print(randomRecipt)
+    return randomRecipt
+    # api_url = ""
+
+@app.get('/ingredient={name}')
+def main_ingredients(name:str):
+    api_url = "https://www.themealdb.com/api/json/v1/1/filter.php?i="+name
+    mainIngredients = requests.get(api_url).json()
+    print(mainIngredients)
+    return mainIngredients
+
 
 # @app.get("/")
 # async def root():

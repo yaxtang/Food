@@ -12,5 +12,6 @@ def getfood():
     # return response
 
 
-def randomRecipt():
+
+# def randomRecipt():
     
